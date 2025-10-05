@@ -210,7 +210,7 @@ function App() {
   }
 
   return (
-    <Box minH="100vh" bgGradient="linear(to-br, purple.400, purple.600)">
+    <Flex minH="100vh" direction="column" bgGradient="linear(to-br, purple.400, purple.600)">
       {/* Header */}
       <Box bg="white" shadow="md" py={4} px={6}>
         <Flex justify="space-between" align="center" maxW="1400px" mx="auto">
@@ -237,7 +237,7 @@ function App() {
       </Box>
 
       {/* Main Content */}
-      <Container maxW="1400px" py={8}>
+      <Container maxW="1400px" py={8} flex="1">
         {showSettings ? (
           <Card maxW="500px" mx="auto">
             <CardHeader>
@@ -420,14 +420,14 @@ function App() {
       </Container>
 
       {/* Footer */}
-      <Box bg="whiteAlpha.900" py={4} mt={8}>
+      <Box bg="whiteAlpha.900" py={4}>
         <Container maxW="1400px">
           <Text textAlign="center" color="gray.600" fontSize="sm">
             DJ EVE v1.0 - 스트리머를 위한 신청곡 관리 도구
           </Text>
         </Container>
       </Box>
-    </Box>
+    </Flex>
   )
 }
 
