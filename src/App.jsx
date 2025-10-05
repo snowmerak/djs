@@ -278,6 +278,14 @@ function App({ currentTheme, themes, onThemeChange }) {
                     value={currentTheme}
                     onChange={(e) => onThemeChange(e.target.value)}
                     size="lg"
+                    bg={themeConfig.cardBg}
+                    color={themeConfig.textPrimary}
+                    sx={{
+                      option: {
+                        bg: themeConfig.cardBg,
+                        color: themeConfig.textPrimary,
+                      }
+                    }}
                   >
                     {Object.entries(themes).map(([key, theme]) => (
                       <option key={key} value={key}>
