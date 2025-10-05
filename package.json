@@ -1,5 +1,9 @@
 {
   "name": "dj-eve",
+  "author": {
+    "name": "snowmerak",
+    "email": "snowmerak@outlook.com"
+  },
   "productName": "DJ EVE",
   "description": "SOOP 스트리머를 위한 신청곡 관리 도구",
   "private": true,
