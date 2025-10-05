@@ -1,6 +1,6 @@
 {
-  "name": "soop-dj-helper",
-  "productName": "SOOP DJ Helper",
+  "name": "dj-eve",
+  "productName": "DJ EVE",
   "description": "SOOP 스트리머를 위한 신청곡 관리 도구",
   "private": true,
   "version": "1.0.0",
@@ -35,8 +35,8 @@
     "vite": "^5.0.8"
   },
   "build": {
-    "appId": "com.soop.djhelper",
-    "productName": "SOOP DJ Helper",
+    "appId": "com.djeve.app",
+    "productName": "DJ EVE",
     "files": [
       "dist/**/*",
       "electron/**/*",

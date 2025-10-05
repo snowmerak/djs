@@ -215,7 +215,7 @@ function App() {
       <Box bg="white" shadow="md" py={4} px={6}>
         <Flex justify="space-between" align="center" maxW="1400px" mx="auto">
           <Heading size="lg" color="purple.600">
-            🎵 SOOP DJ Helper
+            🎵 DJ EVE
           </Heading>
           <HStack spacing={3}>
             <Badge
@@ -423,7 +423,7 @@ function App() {
       <Box bg="whiteAlpha.900" py={4} mt={8}>
         <Container maxW="1400px">
           <Text textAlign="center" color="gray.600" fontSize="sm">
-            SOOP DJ Helper v1.0 - 스트리머를 위한 신청곡 관리 도구
+            DJ EVE v1.0 - 스트리머를 위한 신청곡 관리 도구
           </Text>
         </Container>
       </Box>

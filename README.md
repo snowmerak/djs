@@ -1,4 +1,4 @@
-# SOOP DJ Helper
+# DJ EVE
 
 SOOP(구 아프리카TV) 스트리머를 위한 신청곡 관리 데스크톱 애플리케이션입니다.
 
