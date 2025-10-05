@@ -47,8 +47,9 @@
       "output": "release"
     },
     "win": {
-      "target": ["nsis"],
-      "icon": "assets/icon.png"
+      "target": ["portable"],
+      "icon": "assets/icon.png",
+      "signAndEditExecutable": false
     },
     "mac": {
       "target": ["dmg"],
