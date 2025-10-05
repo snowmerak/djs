@@ -30,19 +30,20 @@ npm install
 ### 개발 모드 실행
 
 ```powershell
-npm run electron:dev
+npm start
 ```
 
-- Vite 개발 서버와 Electron이 동시에 실행됩니다
-- 핫 리로드가 적용되어 코드 수정 시 자동으로 반영됩니다
+- Vite로 React 앱을 빌드하고 Electron을 실행합니다
+- 코드 수정 후 다시 `npm start`를 실행하여 변경사항을 확인합니다
 
 ### 프로덕션 빌드
 
 ```powershell
-npm run electron:build
+npm run package
 ```
 
 - Windows, macOS, Linux용 설치 파일이 `release/` 폴더에 생성됩니다
+- `assets/icon.png`가 앱 아이콘으로 사용됩니다
 
 ## 사용 방법
 
@@ -64,7 +65,10 @@ npm run electron:build
 │   ├── main.jsx       # React 진입점
 │   ├── index.css      # 최소한의 글로벌 스타일
 │   └── App.css        # 빈 파일 (Chakra UI가 스타일 처리)
+├── assets/            # 앱 리소스
+│   └── icon.png       # 앱 아이콘
 ├── public/            # 정적 파일
+│   └── icon.png       # 웹용 파비콘
 ├── dist/              # 빌드된 React 앱
 ├── release/           # 빌드된 Electron 앱
 └── package.json       # 프로젝트 설정
@@ -73,20 +77,17 @@ npm run electron:build
 ## 개발 명령어
 
 ```powershell
-# Vite 개발 서버만 실행
-npm run dev
+# 앱 실행 (빌드 + Electron 실행)
+npm start
 
-# Electron만 실행 (개발 모드)
-npm run electron
-
-# Vite + Electron 동시 실행 (권장)
-npm run electron:dev
-
-# React 앱 빌드
+# React 앱 빌드만
 npm run build
 
-# Electron 앱 빌드 및 패키징
-npm run electron:build
+# Electron만 실행 (이미 빌드된 경우)
+npm run electron
+
+# Electron 앱 패키징 (설치 파일 생성)
+npm run package
 
 # 코드 린팅
 npm run lint

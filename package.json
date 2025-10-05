@@ -39,29 +39,24 @@
     "productName": "SOOP DJ Helper",
     "files": [
       "dist/**/*",
-      "electron/**/*"
+      "electron/**/*",
+      "assets/icon.png"
     ],
     "directories": {
       "buildResources": "assets",
       "output": "release"
     },
     "win": {
-      "target": [
-        "nsis"
-      ],
-      "icon": "public/vite.svg"
+      "target": ["nsis"],
+      "icon": "assets/icon.png"
     },
     "mac": {
-      "target": [
-        "dmg"
-      ],
-      "icon": "public/vite.svg"
+      "target": ["dmg"],
+      "icon": "assets/icon.png"
     },
     "linux": {
-      "target": [
-        "AppImage"
-      ],
-      "icon": "public/vite.svg"
+      "target": ["AppImage"],
+      "icon": "assets/icon.png"
     }
   }
 }
