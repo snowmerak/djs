@@ -246,34 +246,42 @@ function App({ currentTheme, themes, onThemeChange }) {
         {showSettings ? (
           <Card maxW="500px" mx="auto" bg={themeConfig.cardBg} color={isDark ? 'gray.100' : 'inherit'}>
             <CardHeader>
-              <Heading size="md">⚙️ 설정</Heading>
+              <Heading size="md" color={themeConfig.textPrimary}>⚙️ 설정</Heading>
             </CardHeader>
             <CardBody>
               <VStack spacing={4} align="stretch">
                 <FormControl>
-                  <FormLabel>스트리머 ID</FormLabel>
+                  <FormLabel color={themeConfig.textPrimary}>스트리머 ID</FormLabel>
                   <Input
                     value={streamerId}
                     onChange={(e) => setStreamerId(e.target.value)}
                     placeholder="예: beststreamer"
                     isDisabled={isConnected}
                     size="lg"
+                    bg={themeConfig.isDark ? 'whiteAlpha.100' : 'white'}
+                    color={themeConfig.textPrimary}
+                    borderColor={themeConfig.isDark ? 'whiteAlpha.300' : 'gray.200'}
+                    _placeholder={{ color: themeConfig.textSecondary }}
                   />
                 </FormControl>
 
                 <FormControl>
-                  <FormLabel>신청곡 Prefix</FormLabel>
+                  <FormLabel color={themeConfig.textPrimary}>신청곡 Prefix</FormLabel>
                   <Input
                     value={prefix}
                     onChange={(e) => setPrefix(e.target.value)}
                     placeholder="예: !신청"
                     isDisabled={isConnected}
                     size="lg"
+                    bg={themeConfig.isDark ? 'whiteAlpha.100' : 'white'}
+                    color={themeConfig.textPrimary}
+                    borderColor={themeConfig.isDark ? 'whiteAlpha.300' : 'gray.200'}
+                    _placeholder={{ color: themeConfig.textSecondary }}
                   />
                 </FormControl>
 
                 <FormControl>
-                  <FormLabel>테마</FormLabel>
+                  <FormLabel color={themeConfig.textPrimary}>테마</FormLabel>
                   <Select
                     value={currentTheme}
                     onChange={(e) => onThemeChange(e.target.value)}
@@ -295,7 +303,7 @@ function App({ currentTheme, themes, onThemeChange }) {
                   </Select>
                 </FormControl>
 
-                <Divider />
+                <Divider borderColor={themeConfig.isDark ? 'whiteAlpha.300' : 'gray.200'} />
 
                 <HStack spacing={3}>
                   {!isConnected ? (
@@ -335,7 +343,7 @@ function App({ currentTheme, themes, onThemeChange }) {
           <Card bg={themeConfig.cardBg} color={isDark ? 'gray.100' : 'inherit'}>
             <CardHeader>
               <Flex justify="space-between" align="center" flexWrap="wrap" gap={3}>
-                <Heading size="md">
+                <Heading size="md" color={themeConfig.textPrimary}>
                   📋 신청곡 목록 ({songRequests.length})
                 </Heading>
                 <HStack spacing={2} flexWrap="wrap">
