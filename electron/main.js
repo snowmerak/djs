@@ -19,12 +19,12 @@ function createWindow() {
     }
   })
 
-  // 개발 환경에서는 Vite 서버, 프로덕션에서는 빌드된 파일
-  if (process.env.NODE_ENV === 'development') {
-    mainWindow.loadURL('http://localhost:3000')
+  // Webpack으로 빌드된 파일 로드
+  mainWindow.loadFile(path.join(__dirname, '../dist/index.html'))
+  
+  // 개발 환경에서는 DevTools 자동 열기
+  if (process.env.NODE_ENV !== 'production') {
     mainWindow.webContents.openDevTools()
-  } else {
-    mainWindow.loadFile(path.join(__dirname, '../dist/index.html'))
   }
 }
 
