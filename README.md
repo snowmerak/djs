@@ -15,6 +15,7 @@ SOOP(구 아프리카TV) 스트리머를 위한 신청곡 관리 데스크톱 �
 
 - **Electron** - 데스크톱 애플리케이션 프레임워크
 - **React 18** - UI 라이브러리
+- **Chakra UI** - 컴포넌트 라이브러리 및 디자인 시스템
 - **Vite** - 빌드 도구
 - **soop-extension** - SOOP 채팅 연동 라이브러리
 
@@ -58,10 +59,11 @@ npm run electron:build
 │   ├── main.js        # 메인 프로세스 (SOOP 채팅 연동)
 │   └── preload.js     # Preload 스크립트 (IPC 브릿지)
 ├── src/               # React 앱 (렌더러 프로세스)
-│   ├── App.jsx        # 메인 컴포넌트
-│   ├── App.css        # 스타일
+│   ├── Root.jsx       # Chakra UI Provider 및 테마 설정
+│   ├── App.jsx        # 메인 컴포넌트 (Chakra UI 사용)
 │   ├── main.jsx       # React 진입점
-│   └── index.css      # 글로벌 스타일
+│   ├── index.css      # 최소한의 글로벌 스타일
+│   └── App.css        # 빈 파일 (Chakra UI가 스타일 처리)
 ├── public/            # 정적 파일
 ├── dist/              # 빌드된 React 앱
 ├── release/           # 빌드된 Electron 앱
