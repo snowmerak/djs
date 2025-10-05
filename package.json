@@ -7,7 +7,7 @@
   "productName": "DJ EVE",
   "description": "SOOP 스트리머를 위한 신청곡 관리 도구",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "electron/main.js",
   "scripts": {
     "start": "npm run build && electron .",

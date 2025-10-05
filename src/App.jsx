@@ -450,9 +450,9 @@ function App({ currentTheme, themes, onThemeChange }) {
       </Container>
 
       {/* Footer */}
-      <Box bg="whiteAlpha.900" py={4}>
+      <Box bg={themeConfig.headerBg} py={4} borderTop="1px" borderColor={themeConfig.isDark ? 'whiteAlpha.200' : 'gray.200'}>
         <Container maxW="1400px">
-          <Text textAlign="center" color="gray.600" fontSize="sm">
+          <Text textAlign="center" color={themeConfig.textSecondary} fontSize="sm">
             DJ EVE v1.0 - 스트리머를 위한 신청곡 관리 도구
           </Text>
         </Container>
