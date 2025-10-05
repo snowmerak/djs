@@ -2,6 +2,13 @@ const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 const { SoopChatEvent, SoopClient } = require('soop-extension')
 
+// 캐시 디렉토리를 앱 데이터 폴더로 설정하여 권한 문제 방지
+app.setPath('userData', path.join(app.getPath('appData'), 'dj-eve'))
+
+// GPU 캐시 관련 경고 최소화
+app.commandLine.appendSwitch('disable-gpu-shader-disk-cache')
+app.commandLine.appendSwitch('disable-software-rasterizer')
+
 let mainWindow
 let soopChat = null
 let isConnected = false
