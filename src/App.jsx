@@ -180,7 +180,14 @@ function App({ currentTheme, themes, onThemeChange }) {
 
   const handleCopyList = () => {
     const text = songRequests
-      .map((req, idx) => `${idx + 1}. [${req.timestamp}] ${req.username}: ${req.songRequest}`)
+      .map((req, idx) => {
+        const time = new Date(req.timestamp).toLocaleTimeString('ko-KR')
+        if (req.artist) {
+          return `${idx + 1}. [${time}] ${req.username}: ${req.artist} - ${req.songTitle}`
+        } else {
+          return `${idx + 1}. [${time}] ${req.username}: ${req.songTitle || req.songRequest}`
+        }
+      })
       .join('\n')
     
     navigator.clipboard.writeText(text)
@@ -406,7 +413,8 @@ function App({ currentTheme, themes, onThemeChange }) {
                         <Th color={themeConfig.textPrimary}>#</Th>
                         <Th color={themeConfig.textPrimary}>시간</Th>
                         <Th color={themeConfig.textPrimary}>유저명</Th>
-                        <Th color={themeConfig.textPrimary}>신청곡</Th>
+                        <Th color={themeConfig.textPrimary}>가수</Th>
+                        <Th color={themeConfig.textPrimary}>곡명</Th>
                         <Th color={themeConfig.textPrimary}>전체 메시지</Th>
                         <Th color={themeConfig.textPrimary}>삭제</Th>
                       </Tr>
@@ -429,7 +437,14 @@ function App({ currentTheme, themes, onThemeChange }) {
                             </Text>
                           </Td>
                           <Td>
-                            <Text fontWeight="semibold" color={themeConfig.textPrimary}>{request.songRequest}</Text>
+                            <Text fontWeight="semibold" color={themeConfig.textPrimary}>
+                              {request.artist || '-'}
+                            </Text>
+                          </Td>
+                          <Td>
+                            <Text fontWeight="semibold" color={themeConfig.textPrimary}>
+                              {request.songTitle || request.songRequest}
+                            </Text>
                           </Td>
                           <Td>
                             <Text fontSize="sm" color={themeConfig.textSecondary}>

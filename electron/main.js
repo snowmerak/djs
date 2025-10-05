@@ -90,12 +90,29 @@ async function connectChat(streamerId, prefix) {
     soopChat.on(SoopChatEvent.CHAT, response => {
       // prefix로 시작하는 채팅만 필터링
       if (response.comment && response.comment.startsWith(prefix)) {
+        const songRequest = response.comment.substring(prefix.length).trim()
+        
+        // 가수 - 곡명 형식 파싱 (하이픈 앞뒤 공백 허용)
+        let artist = ''
+        let songTitle = ''
+        const hyphenMatch = songRequest.match(/^(.+?)\s*-\s*(.+)$/)
+        
+        if (hyphenMatch) {
+          artist = hyphenMatch[1].trim()
+          songTitle = hyphenMatch[2].trim()
+        } else {
+          // 하이픈이 없으면 전체를 곡명으로 처리
+          songTitle = songRequest
+        }
+        
         mainWindow.webContents.send('new-song-request', {
           timestamp: response.receivedTime,
           username: response.username,
           userId: response.userId,
           comment: response.comment,
-          songRequest: response.comment.substring(prefix.length).trim()
+          songRequest: songRequest,
+          artist: artist,
+          songTitle: songTitle
         })
       }
     })
