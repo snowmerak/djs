@@ -28,10 +28,12 @@ import {
   Alert,
   AlertIcon,
   AlertDescription,
+  Select,
 } from '@chakra-ui/react'
 import { DeleteIcon, CopyIcon, SettingsIcon, RepeatIcon } from '@chakra-ui/icons'
 
-function App() {
+/* eslint-disable react/prop-types */
+function App({ currentTheme, themes, onThemeChange }) {
   const [streamerId, setStreamerId] = React.useState('')
   const [prefix, setPrefix] = React.useState('!신청')
   const [isConnected, setIsConnected] = React.useState(false)
@@ -209,12 +211,15 @@ function App() {
     return 'gray'
   }
 
+  const themeConfig = themes[currentTheme]
+  const isDark = themeConfig.isDark
+
   return (
-    <Flex minH="100vh" direction="column" bgGradient="linear(to-br, purple.400, purple.600)">
+    <Flex minH="100vh" direction="column" bgGradient={themeConfig.gradient}>
       {/* Header */}
-      <Box bg="white" shadow="md" py={4} px={6}>
+      <Box bg={themeConfig.headerBg} shadow="md" py={4} px={6}>
         <Flex justify="space-between" align="center" maxW="1400px" mx="auto">
-          <Heading size="lg" color="purple.600">
+          <Heading size="lg" color={themeConfig.headerText}>
             🎵 DJ EVE
           </Heading>
           <HStack spacing={3}>
@@ -228,7 +233,7 @@ function App() {
               {isConnected ? '● 연결됨' : '○ 연결 안됨'}
             </Badge>
             {connectionMessage && (
-              <Text fontSize="sm" color="gray.600">
+              <Text fontSize="sm" color={themeConfig.textSecondary}>
                 {connectionMessage}
               </Text>
             )}
@@ -239,7 +244,7 @@ function App() {
       {/* Main Content */}
       <Container maxW="1400px" py={8} flex="1">
         {showSettings ? (
-          <Card maxW="500px" mx="auto">
+          <Card maxW="500px" mx="auto" bg={themeConfig.cardBg} color={isDark ? 'gray.100' : 'inherit'}>
             <CardHeader>
               <Heading size="md">⚙️ 설정</Heading>
             </CardHeader>
@@ -267,12 +272,27 @@ function App() {
                   />
                 </FormControl>
 
+                <FormControl>
+                  <FormLabel>테마</FormLabel>
+                  <Select
+                    value={currentTheme}
+                    onChange={(e) => onThemeChange(e.target.value)}
+                    size="lg"
+                  >
+                    {Object.entries(themes).map(([key, theme]) => (
+                      <option key={key} value={key}>
+                        {theme.name}
+                      </option>
+                    ))}
+                  </Select>
+                </FormControl>
+
                 <Divider />
 
                 <HStack spacing={3}>
                   {!isConnected ? (
                     <Button
-                      colorScheme="purple"
+                      colorScheme="brand"
                       size="lg"
                       onClick={handleConnect}
                       width="full"
@@ -304,7 +324,7 @@ function App() {
             </CardBody>
           </Card>
         ) : (
-          <Card>
+          <Card bg={themeConfig.cardBg} color={isDark ? 'gray.100' : 'inherit'}>
             <CardHeader>
               <Flex justify="space-between" align="center" flexWrap="wrap" gap={3}>
                 <Heading size="md">
@@ -386,7 +406,7 @@ function App() {
                             </Text>
                           </Td>
                           <Td>
-                            <Text fontWeight="bold" color="purple.600">
+                            <Text fontWeight="bold" color={themeConfig.textPrimary}>
                               {request.username}
                             </Text>
                           </Td>

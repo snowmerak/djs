@@ -1,36 +1,41 @@
+import React from 'react'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 import App from './App.jsx'
+import { themes } from './themes'
 
-// Chakra UI 테마 커스터마이징
-const theme = extendTheme({
-  config: {
-    initialColorMode: 'light',
-    useSystemColorMode: false,
-  },
-  colors: {
-    brand: {
-      50: '#f5e9ff',
-      100: '#dac1ff',
-      200: '#bf99ff',
-      300: '#a571ff',
-      400: '#8a49ff',
-      500: '#7030e6',
-      600: '#5724b4',
-      700: '#3e1882',
-      800: '#260d50',
-      900: '#0e0120',
+// 기본 테마 생성 함수
+const createTheme = (themeKey = 'purple') => {
+  const selectedTheme = themes[themeKey]
+  
+  return extendTheme({
+    config: {
+      initialColorMode: selectedTheme.isDark ? 'dark' : 'light',
+      useSystemColorMode: false,
     },
-  },
-  fonts: {
-    heading: `-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Malgun Gothic', sans-serif`,
-    body: `-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Malgun Gothic', sans-serif`,
-  },
-})
+    colors: {
+      brand: selectedTheme.colors.brand,
+    },
+    fonts: {
+      heading: `-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Malgun Gothic', sans-serif`,
+      body: `-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Malgun Gothic', sans-serif`,
+    },
+  })
+}
 
 function Root() {
+  const [currentTheme, setCurrentTheme] = React.useState(() => {
+    // localStorage에서 저장된 테마 불러오기
+    return localStorage.getItem('djeve-theme') || 'purple'
+  })
+
+  const changeTheme = (themeKey) => {
+    setCurrentTheme(themeKey)
+    localStorage.setItem('djeve-theme', themeKey)
+  }
+
   return (
-    <ChakraProvider theme={theme}>
-      <App />
+    <ChakraProvider theme={createTheme(currentTheme)}>
+      <App currentTheme={currentTheme} themes={themes} onThemeChange={changeTheme} />
     </ChakraProvider>
   )
 }
