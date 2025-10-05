@@ -23,8 +23,8 @@ function createWindow() {
   // Webpack으로 빌드된 파일 로드
   mainWindow.loadFile(path.join(__dirname, '../dist/index.html'))
   
-  // 개발 환경에서는 DevTools 자동 열기
-  if (process.env.NODE_ENV !== 'production') {
+  // 개발 환경에서만 DevTools 자동 열기 (패키징된 앱에서는 열지 않음)
+  if (process.env.NODE_ENV === 'development') {
     mainWindow.webContents.openDevTools()
   }
 }
