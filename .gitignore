@@ -24,3 +24,9 @@ dist-ssr
 *.sw?
 
 .serena
+
+# Electron
+release/
+*.exe
+*.dmg
+*.AppImage
