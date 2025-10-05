@@ -379,37 +379,39 @@ function App({ currentTheme, themes, onThemeChange }) {
                   textAlign="center"
                   minH="200px"
                   borderRadius="md"
+                  bg={themeConfig.isDark ? 'whiteAlpha.100' : 'blue.50'}
+                  color={themeConfig.textPrimary}
                 >
-                  <AlertIcon boxSize="40px" mr={0} />
-                  <Text mt={4} mb={1} fontSize="lg" fontWeight="bold">
+                  <AlertIcon boxSize="40px" mr={0} color={themeConfig.textPrimary} />
+                  <Text mt={4} mb={1} fontSize="lg" fontWeight="bold" color={themeConfig.textPrimary}>
                     아직 신청곡이 없습니다
                   </Text>
-                  <AlertDescription maxWidth="sm">
+                  <AlertDescription maxWidth="sm" color={themeConfig.textSecondary}>
                     &quot;{prefix}&quot;로 시작하는 채팅이 수집됩니다
                   </AlertDescription>
                 </Alert>
               ) : (
                 <TableContainer maxH="60vh" overflowY="auto">
                   <Table variant="simple" size="sm">
-                    <Thead position="sticky" top={0} bg="gray.50" zIndex={1}>
+                    <Thead position="sticky" top={0} bg={themeConfig.headerBg} zIndex={1}>
                       <Tr>
-                        <Th>#</Th>
-                        <Th>시간</Th>
-                        <Th>유저명</Th>
-                        <Th>신청곡</Th>
-                        <Th>전체 메시지</Th>
-                        <Th>삭제</Th>
+                        <Th color={themeConfig.textPrimary}>#</Th>
+                        <Th color={themeConfig.textPrimary}>시간</Th>
+                        <Th color={themeConfig.textPrimary}>유저명</Th>
+                        <Th color={themeConfig.textPrimary}>신청곡</Th>
+                        <Th color={themeConfig.textPrimary}>전체 메시지</Th>
+                        <Th color={themeConfig.textPrimary}>삭제</Th>
                       </Tr>
                     </Thead>
                     <Tbody>
                       {songRequests.map((request, index) => (
                         <Tr
                           key={`${request.timestamp}-${request.userId}-${index}`}
-                          _hover={{ bg: 'gray.50' }}
+                          _hover={{ bg: themeConfig.isDark ? 'whiteAlpha.100' : 'gray.50' }}
                         >
-                          <Td>{index + 1}</Td>
+                          <Td color={themeConfig.textPrimary}>{index + 1}</Td>
                           <Td>
-                            <Text fontSize="sm" color="gray.600">
+                            <Text fontSize="sm" color={themeConfig.textSecondary}>
                               {new Date(request.timestamp).toLocaleTimeString('ko-KR')}
                             </Text>
                           </Td>
@@ -419,10 +421,10 @@ function App({ currentTheme, themes, onThemeChange }) {
                             </Text>
                           </Td>
                           <Td>
-                            <Text fontWeight="semibold">{request.songRequest}</Text>
+                            <Text fontWeight="semibold" color={themeConfig.textPrimary}>{request.songRequest}</Text>
                           </Td>
                           <Td>
-                            <Text fontSize="sm" color="gray.600">
+                            <Text fontSize="sm" color={themeConfig.textSecondary}>
                               {request.comment}
                             </Text>
                           </Td>
